@@ -1,0 +1,89 @@
+.task__card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.tcard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.tcard__priority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background-color: rgba(223, 168, 116, 0.2);
+  font-size: 12px;
+  font-weight: 500;
+}
+.tcard__priority_low {
+  color: #d58d49;
+  background-color: rgba(223, 168, 116, 0.2);
+}
+.tcard__priority_high {
+  color: #e257b3;
+  background-color: rgba(226, 87, 179, 0.1);
+}
+.tcard__priority_done {
+  color: rgb(104, 178, 102);
+  background-color: rgba(104, 178, 102, 0.2);
+}
+.btn__dots {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tcard__content {
+  margin-bottom: 20px;
+}
+.tcard__title {
+  color: #0d062d;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.tcard__description {
+  font-size: 12px;
+  font-weight: 400;
+}
+.tcard__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 500;
+  gap: 35px;
+}
+
+.tcard__comments,
+.tcard__date {
+  position: relative;
+  &:before {
+    position: absolute;
+    left: -20px;
+    content: "";
+    width: 16px;
+    height: 16px;
+  }
+}
+.tcard__comments {
+  &:before {
+    top: -1px;
+    background: url(../../assets/icons/message.svg) no-repeat;
+  }
+}
+.tcard__date {
+  &:before {
+    top: -2px;
+    background: url(../../assets/icons/calendar.svg) no-repeat;
+  }
+}

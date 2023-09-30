@@ -15,3 +15,19 @@ export const getColorByLetter = (name: string, colors: string[]) => {
 
   return index > 0 ? colors[index] : colors[colors.length - 1];
 };
+
+export const getPriorityName = (priority: string) => {
+  let result;
+  switch (priority) {
+    case "low":
+      result = "Низкий";
+      break;
+    case "high":
+      result = "Высокий";
+      break;
+    default:
+      result = "done";
+      break;
+  }
+  return result;
+};
