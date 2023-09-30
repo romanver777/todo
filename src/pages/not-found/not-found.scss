@@ -1,0 +1,30 @@
+.main_flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nfound {
+  width: 380px;
+  color: #2f4f4f;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding-top: 40px;
+}
+.nfound__code {
+  font-size: 130px;
+  font-weight: 600;
+}
+.nfound__text {
+  font-size: 35px;
+}
+.btn_mt {
+  margin-top: 10px;
+  background-color: rgb(245, 245, 245);
+
+  &:hover {
+    background-color: rgba(245, 245, 245, 0.5);
+  }
+}
