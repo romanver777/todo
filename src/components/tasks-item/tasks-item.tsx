@@ -5,9 +5,10 @@ import "./tasks-item.scss";
 type TProps = {
   title: string;
   count: number;
+  openModal?: () => void;
 };
 
-const TasksItem = ({ title, count }: TProps) => {
+const TasksItem = ({ title, count, openModal }: TProps) => {
   return (
     <div className="tasks__item">
       <header className={`tasks__header tasks__header_${title.toLowerCase()}`}>
@@ -16,7 +17,7 @@ const TasksItem = ({ title, count }: TProps) => {
           <div className="tasks__count">{count}</div>
         </div>
         {title === "Queue" && (
-          <button className="tasks__add">
+          <button className="tasks__add" onClick={openModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
