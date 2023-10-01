@@ -1,3 +1,6 @@
+import { useState } from "react";
+
+import AddProjectModal from "../../components/add-project-modal/add-project-modal";
 import ProjectsItem from "../../components/projects-item/projects-item";
 
 import { data } from "../../utils/const";
@@ -13,6 +16,8 @@ export type TProjectItem = {
 };
 
 const Projects = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <main className="main">
       <div className="projects__head">
@@ -20,7 +25,13 @@ const Projects = () => {
           <div className="projects__title">Мои проекты</div>
           <div className="projects__count">Всего: {data.length}</div>
         </div>
-        <button className="btn">Создать проект</button>
+        <button className="btn" onClick={() => setOpenModal(true)}>
+          Создать проект
+        </button>
+        <AddProjectModal
+          isOpen={openModal}
+          onClose={() => setOpenModal(false)}
+        />
       </div>
       <ul className="projects__list">
         {[...data].reverse().map((project, index) => (
