@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { TProjectItem } from "../../pages/projects/projects";
 import ProgressProject from "../progress-project/progress-project";
+import { TProjectItem } from "../../types/types";
+import { getTasksCount, getDoneTasksCount } from "../../utils/helpers";
 
 import "./projects-item.scss";
 
@@ -20,7 +21,12 @@ const ProjectsItem = ({ item, index }: TProps) => {
           <div className="project__name">{item.name}</div>
           <div className="project__description">{item.description}</div>
         </div>
-        <ProgressProject index={index} item={item} />
+        <ProgressProject
+          index={index}
+          name={item.name}
+          count={getTasksCount(item.boards)}
+          done={getDoneTasksCount(item.boards, "Done")}
+        />
       </Link>
     </li>
   );

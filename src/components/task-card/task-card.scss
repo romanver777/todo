@@ -3,6 +3,9 @@
   border-radius: 16px;
   box-sizing: border-box;
   padding: 20px;
+  cursor: grab;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 .tcard__header {
   display: flex;
@@ -43,17 +46,18 @@
   align-items: center;
 }
 .tcard__content {
-  margin-bottom: 20px;
+  padding: 5px 0 10px;
 }
 .tcard__title {
   color: #0d062d;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 6px;
 }
 .tcard__description {
   font-size: 12px;
   font-weight: 400;
+  margin-bottom: 5px;
 }
 .tcard__footer {
   display: flex;

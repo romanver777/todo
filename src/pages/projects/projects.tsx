@@ -7,14 +7,6 @@ import { data } from "../../utils/const";
 
 import "./projects.scss";
 
-export type TProjectItem = {
-  id: number;
-  name: string;
-  description: string;
-  count: number;
-  done: number;
-};
-
 const Projects = () => {
   const [openModal, setOpenModal] = useState(false);
 
