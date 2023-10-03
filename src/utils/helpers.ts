@@ -1,3 +1,5 @@
+import { TBoards, TProjectItem } from "../types/types";
+
 export const getColorByLetter = (name: string, colors: string[]) => {
   const letter = name[0].toLowerCase();
   const code = letter.charCodeAt(0);
@@ -30,4 +32,34 @@ export const getPriorityName = (priority: string) => {
       break;
   }
   return result;
+};
+
+export const getTasksCount = (boards: TBoards) => {
+  // export const getTasksCount = (boards: TBoard[]) => {
+  // return boards.reduce((a, board) => board.tasks.length + a, 0);
+  return Object.keys(boards).reduce((a, items) => items.length + a, 0);
+};
+
+export const getDoneTasksCount = (boards: TBoards, name: string) => {
+  // return boards[2].tasks.length;
+  return boards[name].length;
+};
+
+export const getBoards = (id: string, data: TProjectItem[]) => {
+  return data.filter((project) => project.id === +id)[0].boards;
+};
+
+export const getTaskById = (boards: TBoards, id: string) => {
+  return Object.keys(boards)
+    .map((key) => boards[key])
+    .flat()
+    .filter((item) => item.id === +id)[0];
+};
+
+export const getBoardName = (boards: TBoards, id: string) => {
+  if (id in boards) return id;
+
+  return Object.keys(boards).find((key) =>
+    boards[key].find((item) => item.id === +id)
+  );
 };

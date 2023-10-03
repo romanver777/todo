@@ -1,22 +1,33 @@
+import { useDroppable } from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+
 import TaskCard from "../task-card/task-card";
+import { TTask } from "../../types/types";
+import { boardsNames } from "../../utils/const";
 
 import "./tasks-item.scss";
 
 type TProps = {
+  id: string;
   title: string;
-  count: number;
+  tasks: TTask[];
   openModal?: () => void;
 };
 
-const TasksItem = ({ title, count, openModal }: TProps) => {
+const TasksItem = ({ id, title, tasks, openModal }: TProps) => {
+  const { setNodeRef } = useDroppable({ id });
+
   return (
     <div className="tasks__item">
       <header className={`tasks__header tasks__header_${title.toLowerCase()}`}>
         <div className={`header_left header_left_${title.toLowerCase()}`}>
           <h3 className="tasks__title">{title}</h3>
-          <div className="tasks__count">{count}</div>
+          <div className="tasks__count">{tasks.length}</div>
         </div>
-        {title === "Queue" && (
+        {title === boardsNames[0] && (
           <button className="tasks__add" onClick={openModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -39,14 +50,19 @@ const TasksItem = ({ title, count, openModal }: TProps) => {
           </button>
         )}
       </header>
-      <div className="tasks__body">
-        <div className="tasks__list">
-          <TaskCard priority="low" />
-          <TaskCard priority="high" />
-          <TaskCard priority="done" />
-          <TaskCard priority="low" />
+      <SortableContext
+        id={id}
+        items={tasks}
+        strategy={verticalListSortingStrategy}
+      >
+        <div className="tasks__body" ref={setNodeRef}>
+          <div className="tasks__list">
+            {tasks.map((task) => (
+              <TaskCard key={task.id} task={task} boardName={title} />
+            ))}
+          </div>
         </div>
-      </div>
+      </SortableContext>
     </div>
   );
 };

@@ -1,28 +1,55 @@
-import { getPriorityName } from "../../utils/helpers";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+import { boardsNames } from "../../utils/const";
+import { TTask } from "../../types/types";
 
 import dotsIcon from "../../assets/icons/dots.svg";
 import "./task-card.scss";
 
 type TProps = {
-  priority: string;
+  task: TTask;
+  boardName?: string;
 };
 
-const TaskCard = ({ priority }: TProps) => {
+const TaskCard = ({ task, boardName }: TProps) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: task.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0 : 1,
+  };
+
+  const priorityName =
+    boardName === boardsNames[2] ? boardsNames[2].toLowerCase() : task.priority;
+
   return (
-    <div className="task__card">
+    <div
+      className="task__card"
+      style={style}
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+    >
       <div className="tcard__header">
-        <div className={`tcard__priority tcard__priority_${priority}`}>
-          {getPriorityName(priority)}
+        <div className={`tcard__priority tcard__priority_${priorityName}`}>
+          {priorityName}
         </div>
         <button className="btn__dots">
           <img src={dotsIcon} alt="меню заметки" className="dots-icon" />
         </button>
       </div>
       <div className="tcard__content">
-        <div className="tcard__title">Набор слов</div>
-        <div className="tcard__description">
-          Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский
-          набор слов, но это не совсем так.
+        <div className="tcard__title">{task.title}</div>
+        <div className="tcard__description">{task.description || ""}
         </div>
       </div>
       <div className="tcard__footer">
